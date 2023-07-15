@@ -4,6 +4,7 @@ import Cart from "./components/Cart";
 
 const initialData = [
   {
+    id: 1,
     name: "The North Face",
     description: "Class V Camp Blue Coral",
     image:
@@ -11,6 +12,7 @@ const initialData = [
     price: 2500,
   },
   {
+    id: 2,
     name: "Dickies",
     description: "Albertville Black",
     image:
@@ -18,6 +20,7 @@ const initialData = [
     price: 2070,
   },
   {
+    id: 3,
     name: "Fjällräven",
     description: "High Coast Lite Green",
     image:
@@ -25,6 +28,7 @@ const initialData = [
     price: 3200,
   },
   {
+    id: 4,
     name: "Jack Wolfskin",
     description: "Supplex Canyon Asphalt",
     image:
@@ -32,6 +36,7 @@ const initialData = [
     price: 2240,
   },
   {
+    id: 5,
     name: "Formula One",
     description: "Red Bull Racing F1",
     image:
@@ -39,6 +44,7 @@ const initialData = [
     price: 2800,
   },
   {
+    id: 6,
     name: "Coal",
     description: "Provo Olive 5-Panel",
     image:
@@ -46,6 +52,7 @@ const initialData = [
     price: 3900,
   },
   {
+    id: 7,
     name: "Abducted",
     description: "See You Later Ufo Black",
     image:
@@ -53,6 +60,7 @@ const initialData = [
     price: 3900,
   },
   {
+    id: 8,
     name: "Iconic",
     description: "Chili Black",
     image:
@@ -60,6 +68,7 @@ const initialData = [
     price: 2300,
   },
   {
+    id: 9,
     name: "Fox",
     description: "Know No Bounds Black",
     image:
@@ -70,10 +79,19 @@ const initialData = [
 
 function App() {
   const [products, setProducts] = useState(initialData);
+  const [cart, setCart] = useState([]);
+  const [total, setTotal] = useState(0);
+
   return (
     <div className="App">
-      <ProductList products={products} />
-      <Cart />
+      <ProductList
+        products={products}
+        cart={cart}
+        setCart={setCart}
+        total={total}
+        setTotal={setTotal}
+      />
+      <Cart cart={cart} setCart={setCart} total={total} setTotal={setTotal} />
     </div>
   );
 }

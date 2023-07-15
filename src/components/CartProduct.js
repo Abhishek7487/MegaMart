@@ -1,18 +1,23 @@
 import React from "react";
 
-function CartProduct() {
+function CartProduct({ product, cart, setCart, total, setTotal }) {
+  function handleRemoveFromCart() {
+    setCart(cart.filter((cur) => cur.id !== product.id));
+    setTotal(total - product.price);
+  }
+
   return (
     <li className="cartProduct">
-      <img
-        src="https://hatstore.imgix.net/194904323393_1.jpg?auto=compress%2Cformat&w=544&h=435&q=50"
-        alt="productImage"
-      />
+      <img src={product.image} alt="productImage" />
       <div className="cProductInfo">
-        <h4>name</h4>
-        <h4>₹ 00</h4>
+        <h4>{product.name}</h4>
+        <h4>₹ {product.price}</h4>
       </div>
       <div className="action">
-        <i class="fa-solid fa-trash remove"></i>
+        <i
+          className="fa-solid fa-trash remove"
+          onClick={handleRemoveFromCart}
+        ></i>
         <div className="quantity">
           <button>-</button>
           <p>1</p>

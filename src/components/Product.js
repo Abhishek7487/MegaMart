@@ -1,6 +1,12 @@
 import React from "react";
 
-function Product({ product }) {
+function Product({ product, cart, setCart, total, setTotal }) {
+  function handleAddToCart() {
+    if (cart.includes(product)) return;
+    setCart([product, ...cart]);
+    setTotal(total + product.price);
+  }
+
   return (
     <li>
       <div className="imgCover">
@@ -13,7 +19,9 @@ function Product({ product }) {
           <p>{product.description}</p>
         </div>
         <div>
-          <button className="btn">Add to cart</button>
+          <button className="btn" onClick={handleAddToCart}>
+            Add to cart
+          </button>
         </div>
       </div>
     </li>

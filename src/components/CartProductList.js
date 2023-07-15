@@ -1,14 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import CartProduct from "./CartProduct";
 
-function CartProductList() {
+function CartProductList({ cart, setCart, total, setTotal }) {
   return (
     <div className="cartProductList">
-      <CartProduct />
-      <CartProduct />
-      <CartProduct />
-      <CartProduct />
-      <CartProduct />
+      {cart.map((product) => (
+        <CartProduct
+          product={product}
+          key={product.id}
+          cart={cart}
+          setCart={setCart}
+          total={total}
+          setTotal={setTotal}
+        />
+      ))}
     </div>
   );
 }

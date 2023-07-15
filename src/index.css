@@ -123,10 +123,6 @@ li {
   transition: all 0.3s;
 }
 
-.cartProductList:hover {
-  box-shadow: 0 0.4rem 1rem #6e6d6d1c;
-}
-
 .cartProductList::-webkit-scrollbar {
   display: none;
 }
@@ -146,8 +142,10 @@ li {
 }
 
 .cProductInfo {
+  width: 40%;
   display: flex;
   flex-direction: column;
+  align-self: flex-start;
   gap: 0.4rem;
 }
 
@@ -208,4 +206,15 @@ li {
 .checkoutBtn:hover {
   background-color: #2a9d8f;
   box-shadow: 0 0.4rem 1rem #a4a3a3b6;
+}
+
+/* Empty Cart */
+.emptyCart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.emptyCart img {
+  height: 14rem;
 }
