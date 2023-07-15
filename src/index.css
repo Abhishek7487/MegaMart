@@ -1,10 +1,96 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Outfit:wght@100;200;300;400;500;600&display=swap");
+
 body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Outfit", sans-serif;
+}
+
+h3,
+h4,
+p {
+  margin: 0;
 }
 
 .App {
   display: grid;
   grid-template-columns: 3fr 1fr;
+  min-height: 100vh;
+  padding: 3.6rem 2.8rem;
+  background-color: #ffffff;
+}
+
+.productList {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+  justify-items: center;
+}
+
+.productList li {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 0.6rem;
+  cursor: pointer;
+}
+
+.productList li:hover {
+  .imgCover {
+    box-shadow: inset 0 0 4rem #dbdbdb4f;
+  }
+}
+
+.imgCover {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  padding: 2rem;
+  padding-bottom: 0.1rem;
+  box-shadow: 0 0 1rem #dbdbdba2;
+  border-radius: 5px;
+}
+
+.imgCover img {
+  height: 10rem;
+}
+
+.imgCover p {
+  align-self: flex-end;
+  background-color: #333;
+  color: #fff;
+  padding: 0.1rem 0.4rem;
+}
+
+.productDetials {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.4rem 0;
+}
+
+.productDetials .productInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.productDetials p {
+  font-size: 0.8rem;
+}
+
+.productDetials .btn {
+  border: none;
+  padding: 0.4rem 0.8rem;
+  font-family: "Outfit";
+  background-color: #2a9d8f;
+  border-radius: 2px;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.productDetials .btn:hover {
+  background-color: #0da492d0;
 }
