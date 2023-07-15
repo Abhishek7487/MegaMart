@@ -3,3 +3,8 @@ body {
   padding: 0;
   box-sizing: border-box;
 }
+
+.App {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+}

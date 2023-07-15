@@ -1,3 +1,7 @@
+import React from "react";
+import ProductList from "./components/ProductList";
+import Cart from "./components/Cart";
+
 const initialData = [
   {
     name: "The North Face",
@@ -60,7 +64,8 @@ const initialData = [
 function App() {
   return (
     <div className="App">
-      <h1>Hat Store</h1>
+      <ProductList />
+      <Cart />
     </div>
   );
 }
