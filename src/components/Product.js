@@ -1,6 +1,6 @@
 import React from "react";
 
-function Product({ product, cart, setCart, total, setTotal }) {
+function Product({ product, cart, setCart, total, setTotal, checkoutMessage }) {
   function handleAddToCart() {
     if (cart.includes(product)) return;
     setCart([product, ...cart]);
@@ -19,9 +19,15 @@ function Product({ product, cart, setCart, total, setTotal }) {
           <p>{product.description}</p>
         </div>
         <div>
-          <button className="btn" onClick={handleAddToCart}>
-            Add to cart
-          </button>
+          {checkoutMessage ? (
+            <button className="btn" onClick={handleAddToCart} disabled>
+              Add to cart
+            </button>
+          ) : (
+            <button className="btn" onClick={handleAddToCart}>
+              Add to cart
+            </button>
+          )}
         </div>
       </div>
     </li>

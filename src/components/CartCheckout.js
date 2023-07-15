@@ -1,11 +1,18 @@
 import React from "react";
 
-function CartCheckout({ total }) {
+function CartCheckout({ total, setTotal, setCart, setCheckoutMessage }) {
+  function handleCheckout() {
+    setCart([]);
+    setCheckoutMessage(true);
+  }
+
   return (
     <div className="cartCheckout">
       <h3>Total</h3>
-      <h1>₹ {total}</h1>
-      <button className="checkoutBtn">Checkout</button>
+      <h1>₹ {total.toLocaleString("en-IN")}</h1>
+      <button className="checkoutBtn" onClick={handleCheckout}>
+        Checkout
+      </button>
     </div>
   );
 }

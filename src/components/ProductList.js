@@ -1,7 +1,14 @@
 import React from "react";
 import Product from "./Product";
 
-function ProductList({ products, cart, setCart, total, setTotal }) {
+function ProductList({
+  products,
+  cart,
+  setCart,
+  total,
+  setTotal,
+  checkoutMessage,
+}) {
   return (
     <div className="productList">
       {products.map((product) => (
@@ -13,6 +20,7 @@ function ProductList({ products, cart, setCart, total, setTotal }) {
           setCart={setCart}
           total={total}
           setTotal={setTotal}
+          checkoutMessage={checkoutMessage}
         />
       ))}
     </div>

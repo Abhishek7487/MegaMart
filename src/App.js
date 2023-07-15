@@ -78,9 +78,10 @@ const initialData = [
 ];
 
 function App() {
-  const [products, setProducts] = useState(initialData);
+  const products = initialData;
   const [cart, setCart] = useState([]);
   const [total, setTotal] = useState(0);
+  const [checkoutMessage, setCheckoutMessage] = useState(false);
 
   return (
     <div className="App">
@@ -90,8 +91,16 @@ function App() {
         setCart={setCart}
         total={total}
         setTotal={setTotal}
+        checkoutMessage={checkoutMessage}
       />
-      <Cart cart={cart} setCart={setCart} total={total} setTotal={setTotal} />
+      <Cart
+        cart={cart}
+        setCart={setCart}
+        total={total}
+        setTotal={setTotal}
+        checkoutMessage={checkoutMessage}
+        setCheckoutMessage={setCheckoutMessage}
+      />
     </div>
   );
 }

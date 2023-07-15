@@ -3,25 +3,53 @@ import CartProductList from "./CartProductList";
 import CartCheckout from "./CartCheckout";
 import EmptyCart from "../empty-cart.png";
 
-function Cart({ cart, setCart, total, setTotal }) {
+function Cart({
+  cart,
+  setCart,
+  total,
+  setTotal,
+  checkoutMessage,
+  setCheckoutMessage,
+}) {
+  function handleReturnToCart() {
+    setCheckoutMessage(false);
+    setTotal(0);
+  }
   return (
     <div className="cart">
-      <h3>Your Cart</h3>
-      {total > 0 ? (
-        <>
-          <CartProductList
-            cart={cart}
-            setCart={setCart}
-            total={total}
-            setTotal={setTotal}
-          />
-          <CartCheckout total={total} />
-        </>
-      ) : (
-        <div className="emptyCart">
-          <img src={EmptyCart} alt="emptyCart" />
-          <p>Your cart is empty!</p>
+      {checkoutMessage ? (
+        <div className="checkoutMessage">
+          <p>
+            Thank you! for your purchase of{" "}
+            <span>₹{total.toLocaleString("en-IN")}</span>😊
+          </p>
+          <button onClick={handleReturnToCart}>Return to cart</button>
         </div>
+      ) : (
+        <>
+          <h3>Your Cart</h3>
+          {total > 0 ? (
+            <>
+              <CartProductList
+                cart={cart}
+                setCart={setCart}
+                total={total}
+                setTotal={setTotal}
+              />
+              <CartCheckout
+                setCart={setCart}
+                total={total}
+                setTotal={setTotal}
+                setCheckoutMessage={setCheckoutMessage}
+              />
+            </>
+          ) : (
+            <div className="emptyCart">
+              <img src={EmptyCart} alt="emptyCart" />
+              <p>Your cart is empty!</p>
+            </div>
+          )}
+        </>
       )}
     </div>
   );

@@ -1,8 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 
 function CartProduct({ product, cart, setCart, total, setTotal }) {
+  const [quantity, setQuantity] = useState(1);
+
   function handleRemoveFromCart() {
     setCart(cart.filter((cur) => cur.id !== product.id));
+    setTotal(total - product.price * quantity);
+  }
+
+  function handleIncreaseQuantity() {
+    setQuantity(quantity + 1);
+    setTotal(total + product.price);
+  }
+
+  function handleDecreaseQuantity() {
+    if (quantity === 1) return;
+    setQuantity(quantity - 1);
     setTotal(total - product.price);
   }
 
@@ -11,7 +24,7 @@ function CartProduct({ product, cart, setCart, total, setTotal }) {
       <img src={product.image} alt="productImage" />
       <div className="cProductInfo">
         <h4>{product.name}</h4>
-        <h4>₹ {product.price}</h4>
+        <h4>₹ {product.price * quantity}</h4>
       </div>
       <div className="action">
         <i
@@ -19,9 +32,9 @@ function CartProduct({ product, cart, setCart, total, setTotal }) {
           onClick={handleRemoveFromCart}
         ></i>
         <div className="quantity">
-          <button>-</button>
-          <p>1</p>
-          <button>+</button>
+          <button onClick={handleDecreaseQuantity}>-</button>
+          <p>{quantity}</p>
+          <button onClick={handleIncreaseQuantity}>+</button>
         </div>
       </div>
     </li>

@@ -29,7 +29,7 @@ li {
 
 .productList {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
   justify-items: center;
   max-height: 91vh;
@@ -169,6 +169,11 @@ li {
   align-items: center;
 }
 
+.quantity p {
+  width: 1rem;
+  text-align: center;
+}
+
 .quantity button {
   border: none;
   font-size: 1.1rem;
@@ -217,4 +222,35 @@ li {
 
 .emptyCart img {
   height: 14rem;
+}
+
+.checkoutMessage {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.6rem;
+}
+
+.checkoutMessage p {
+  width: 75%;
+  text-align: center;
+  line-height: 1.8;
+  font-size: 1rem;
+}
+
+.checkoutMessage p span {
+  color: #2a9d8f;
+  font-weight: 600;
+}
+
+.checkoutMessage button {
+  border: none;
+  background-color: #2a9d8f;
+  color: #fff;
+  font-size: 1rem;
+  padding: 0.8rem 1.6rem;
+  border-radius: 5px;
+  cursor: pointer;
 }
