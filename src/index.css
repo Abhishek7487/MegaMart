@@ -7,17 +7,23 @@ body {
   font-family: "Outfit", sans-serif;
 }
 
+h1,
 h3,
 h4,
 p {
   margin: 0;
 }
 
+li {
+  list-style: none;
+}
+
 .App {
   display: grid;
   grid-template-columns: 3fr 1fr;
-  min-height: 100vh;
+  gap: 2rem;
   padding: 3.6rem 2.8rem;
+  padding-bottom: 0;
   background-color: #ffffff;
 }
 
@@ -26,10 +32,15 @@ p {
   grid-template-columns: 1fr 1fr 1fr;
   gap: 1rem;
   justify-items: center;
+  max-height: 91vh;
+  overflow: auto;
+}
+
+.productList::-webkit-scrollbar {
+  display: none;
 }
 
 .productList li {
-  list-style: none;
   display: flex;
   flex-direction: column;
   padding-bottom: 0.6rem;
@@ -93,4 +104,108 @@ p {
 
 .productDetials .btn:hover {
   background-color: #0da492d0;
+}
+
+/* Cart CSS */
+.cart {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  height: 80vh;
+  box-shadow: 0 0 1rem #e5e4e46a;
+  padding: 1.2rem 1.8rem;
+}
+
+/* cartList */
+.cartProductList {
+  height: 65vh;
+  overflow: auto;
+  transition: all 0.3s;
+}
+
+.cartProductList:hover {
+  box-shadow: 0 0.4rem 1rem #6e6d6d1c;
+}
+
+.cartProductList::-webkit-scrollbar {
+  display: none;
+}
+
+.cartProduct {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.2rem;
+  box-shadow: 0 0 1rem #dbdbdb50;
+  padding: 1.2rem 0.6rem;
+  border-radius: 5px;
+}
+
+.cartProduct img {
+  height: 3rem;
+}
+
+.cProductInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.action {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.action i {
+  align-self: flex-end;
+  color: #444;
+  cursor: pointer;
+}
+
+.quantity {
+  align-self: flex-end;
+  display: flex;
+  gap: 0.6rem;
+  display: flex;
+  align-items: center;
+}
+
+.quantity button {
+  border: none;
+  font-size: 1.1rem;
+  height: 1.6rem;
+  width: 1.6rem;
+  cursor: pointer;
+}
+
+/* cartCheckout */
+.cartCheckout {
+  height: 26vh;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 0.8rem;
+}
+
+.cartCheckout h1 {
+  color: #333333;
+}
+
+.cartCheckout .checkoutBtn {
+  width: 50%;
+  background-color: #2a9d8f;
+  color: #fff;
+  padding: 0.8rem 0;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.checkoutBtn:hover {
+  background-color: #2a9d8f;
+  box-shadow: 0 0.4rem 1rem #a4a3a3b6;
 }
