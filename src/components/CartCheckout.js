@@ -1,6 +1,6 @@
 import React from "react";
 
-function CartCheckout({ total, setTotal, setCart, setCheckoutMessage }) {
+function CartCheckout({ total, setCart, setCheckoutMessage }) {
   function handleCheckout() {
     setCart([]);
     setCheckoutMessage(true);

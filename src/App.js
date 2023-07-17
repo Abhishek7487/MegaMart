@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ProductList from "./components/ProductList";
 import Cart from "./components/Cart";
+import Product from "./components/Product";
 
 const initialData = [
   {
@@ -85,14 +86,20 @@ function App() {
 
   return (
     <div className="App">
-      <ProductList
-        products={products}
-        cart={cart}
-        setCart={setCart}
-        total={total}
-        setTotal={setTotal}
-        checkoutMessage={checkoutMessage}
-      />
+      <ProductList>
+        {products.map((product) => (
+          <Product
+            key={product.id}
+            product={product}
+            products={products}
+            cart={cart}
+            setCart={setCart}
+            total={total}
+            setTotal={setTotal}
+            checkoutMessage={checkoutMessage}
+          />
+        ))}
+      </ProductList>
       <Cart
         cart={cart}
         setCart={setCart}
