@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ProductList from "./components/ProductList";
 import Cart from "./components/Cart";
 import Product from "./components/Product";
+import Navbar from "./components/Navbar";
 
 const initialData = [
   {
@@ -86,6 +87,7 @@ function App() {
 
   return (
     <div className="App">
+      <Navbar />
       <ProductList>
         {products.map((product) => (
           <Product
@@ -100,14 +102,14 @@ function App() {
           />
         ))}
       </ProductList>
-      <Cart
+      {/* <Cart
         cart={cart}
         setCart={setCart}
         total={total}
         setTotal={setTotal}
         checkoutMessage={checkoutMessage}
         setCheckoutMessage={setCheckoutMessage}
-      />
+      /> */}
     </div>
   );
 }
