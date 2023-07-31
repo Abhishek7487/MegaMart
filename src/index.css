@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Outfit:wght@100;200;300;400;500;600&display=swap");
 
+html {
+  font-size: 100%;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -308,4 +312,85 @@ li {
   padding: 0.8rem 1.6rem;
   border-radius: 5px;
   cursor: pointer;
+}
+
+/* Media Queries */
+@media screen and (max-width: 1490px) {
+  .productList {
+    padding: 8rem 4rem;
+    gap: 2rem;
+  }
+}
+
+@media screen and (max-width: 1293px) {
+  .productList {
+    grid-template-columns: repeat(3, 1fr);
+    padding: 8rem;
+  }
+}
+
+@media screen and (max-width: 1120px) {
+  html {
+    font-size: 88.5%;
+  }
+
+  .productList {
+    padding: 8rem 4.6rem;
+    max-height: 65vh;
+  }
+
+  .cart {
+    height: 82vh;
+    margin-top: 5rem;
+  }
+}
+
+@media screen and (max-width: 880px) {
+  html {
+    font-size: 82.5%;
+  }
+
+  .productList {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.8rem;
+    max-height: 69vh;
+  }
+
+  .cart {
+    height: 87vh;
+    margin-top: 3.8rem;
+  }
+}
+
+@media screen and (max-width: 595px) {
+  html {
+    font-size: 90%;
+  }
+
+  .productList {
+    grid-template-columns: 1fr;
+    max-height: 66vh;
+  }
+
+  .cart {
+    height: 86vh;
+    margin-top: 4rem;
+  }
+}
+
+@media screen and (max-width: 595px) {
+  html {
+    font-size: 90%;
+  }
+
+  .productList {
+    grid-template-columns: 1fr;
+    max-height: 72vh;
+  }
+
+  .cart {
+    height: 85vh;
+    margin-top: 5.6rem;
+    width: 88%;
+  }
 }
