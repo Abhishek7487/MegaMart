@@ -21,11 +21,11 @@ li {
 .App {
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
   justify-content: center;
   gap: 2rem;
-  padding-bottom: 0;
   background-color: #ffffff;
+  position: relative;
+  overflow-x: hidden;
 }
 
 .navbar {
@@ -33,9 +33,10 @@ li {
   justify-content: space-between;
   background-color: #262626;
   padding: 1rem 4.2rem;
-  position: sticky;
+  position: fixed;
   top: 0;
   left: 0;
+  right: 0;
 }
 
 .navbar .logo,
@@ -44,15 +45,35 @@ li {
   cursor: pointer;
 }
 
+.cartStats {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.cartStats .itemNumbers {
+  display: flex;
+  position: absolute;
+  bottom: -0.4rem;
+  right: -0.4rem;
+  background: #f88749;
+  height: 1rem;
+  width: 1rem;
+  padding: 0.2rem;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
 .productList {
-  align-self: center;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  padding: 8rem 10rem;
+  grid-template-columns: repeat(4, 1fr);
   gap: 2.4rem;
   justify-items: center;
-  max-height: 91vh;
+  max-height: 63.5vh;
   overflow: auto;
-  padding: 2rem 2.8rem;
 }
 
 .productList::-webkit-scrollbar {
@@ -83,7 +104,7 @@ li {
 }
 
 .imgCover img {
-  height: 9rem;
+  height: 10rem;
 }
 
 .imgCover p {
@@ -130,9 +151,24 @@ li {
   display: flex;
   flex-direction: column;
   gap: 1.6rem;
-  height: 80vh;
-  box-shadow: 0 0 1rem #e5e4e46a;
+  height: 85vh;
+  width: 20rem;
+  background: #fff;
+  box-shadow: 0 1rem 1rem #e5e4e46a;
   padding: 1.2rem 1.8rem;
+  margin-top: 4rem;
+}
+
+.hide {
+  position: absolute;
+  right: -30rem;
+  opacity: 0;
+}
+
+.show {
+  position: absolute;
+  right: 0;
+  opacity: 1;
 }
 
 /* cartList */

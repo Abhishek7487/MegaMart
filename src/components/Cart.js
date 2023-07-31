@@ -11,20 +11,24 @@ function Cart({
   setTotal,
   checkoutMessage,
   setCheckoutMessage,
+  cartVisibility,
+  setCartVisibility,
 }) {
   function handleReturnToCart() {
     setCheckoutMessage(false);
     setTotal(0);
+    setCartVisibility(!cartVisibility);
   }
+
   return (
-    <div className="cart">
+    <div className={!cartVisibility ? "cart hide" : "cart show"}>
       {checkoutMessage ? (
         <div className="checkoutMessage">
           <p>
             Thank you! for your purchase of{" "}
             <span>₹{total.toLocaleString("en-IN")}</span>😊
           </p>
-          <button onClick={handleReturnToCart}>Return to cart</button>
+          <button onClick={handleReturnToCart}>Shop more</button>
         </div>
       ) : (
         <>

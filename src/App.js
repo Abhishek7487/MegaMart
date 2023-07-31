@@ -77,17 +77,46 @@ const initialData = [
       "https://hatstore.imgix.net/191972665622_1.jpg?auto=compress%2Cformat&w=544&h=435&q=50",
     price: 1700,
   },
+  {
+    id: 10,
+    name: "New Era",
+    description: "Red Bull Racing F1 23",
+    image:
+      "https://hatstore.imgix.net/196996568720_1.jpg?auto=compress%2Cformat&w=544&h=435&q=50",
+    price: 2560,
+  },
+  {
+    id: 11,
+    name: "Capslab",
+    description: "Looney Bunny Grey Trucker",
+    image:
+      "https://hatstore.imgix.net/3614001104895_1.jpg?auto=compress%2Cformat&w=544&h=435&q=50",
+    price: 2800,
+  },
+  {
+    id: 12,
+    name: "Stetson",
+    description: "Gasoline White Trucker",
+    image:
+      "https://hatstore.imgix.net/4043898886703_1.jpg?auto=compress%2Cformat&w=544&h=435&q=50",
+    price: 2500,
+  },
 ];
 
 function App() {
   const products = initialData;
   const [cart, setCart] = useState([]);
+  const [cartVisibility, setCartVisibility] = useState(false);
   const [total, setTotal] = useState(0);
   const [checkoutMessage, setCheckoutMessage] = useState(false);
 
   return (
     <div className="App">
-      <Navbar />
+      <Navbar
+        cartVisibility={cartVisibility}
+        setCartVisibility={setCartVisibility}
+        cart={cart}
+      />
       <ProductList>
         {products.map((product) => (
           <Product
@@ -102,14 +131,18 @@ function App() {
           />
         ))}
       </ProductList>
-      {/* <Cart
-        cart={cart}
-        setCart={setCart}
-        total={total}
-        setTotal={setTotal}
-        checkoutMessage={checkoutMessage}
-        setCheckoutMessage={setCheckoutMessage}
-      /> */}
+      {cartVisibility && (
+        <Cart
+          cart={cart}
+          setCart={setCart}
+          total={total}
+          setTotal={setTotal}
+          checkoutMessage={checkoutMessage}
+          setCheckoutMessage={setCheckoutMessage}
+          cartVisibility={cartVisibility}
+          setCartVisibility={setCartVisibility}
+        />
+      )}
     </div>
   );
 }
