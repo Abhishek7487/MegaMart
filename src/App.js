@@ -1,147 +1,96 @@
-import React, { useState } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import ProductList from "./components/ProductList";
 import Cart from "./components/Cart";
 import Product from "./components/Product";
-import Navbar from "./components/Navbar";
-
-const initialData = [
-  {
-    id: 1,
-    name: "The North Face",
-    description: "Class V Camp Blue Coral",
-    image:
-      "https://hatstore.imgix.net/196011600602_1.jpg?auto=compress%2Cformat&w=544&h=435&q=50",
-    price: 2500,
-  },
-  {
-    id: 2,
-    name: "Dickies",
-    description: "Albertville Black",
-    image:
-      "https://hatstore.imgix.net/194904323393_1.jpg?auto=compress%2Cformat&w=544&h=435&q=50",
-    price: 2070,
-  },
-  {
-    id: 3,
-    name: "Fjällräven",
-    description: "High Coast Lite Green",
-    image:
-      "https://hatstore.imgix.net/7323450680497_1.jpg?auto=compress%2Cformat&w=544&h=435&q=50",
-    price: 3200,
-  },
-  {
-    id: 4,
-    name: "Jack Wolfskin",
-    description: "Supplex Canyon Asphalt",
-    image:
-      "https://hatstore.imgix.net/4064993176131_1.jpg?auto=compress%2Cformat&w=544&h=435&q=50",
-    price: 2240,
-  },
-  {
-    id: 5,
-    name: "Formula One",
-    description: "Red Bull Racing F1",
-    image:
-      "https://hatstore.imgix.net/8719203247700_1.jpg?auto=compress%2Cformat&w=544&h=435&q=50",
-    price: 2800,
-  },
-  {
-    id: 6,
-    name: "Coal",
-    description: "Provo Olive 5-Panel",
-    image:
-      "https://hatstore.imgix.net/840056930568_1.jpg?auto=compress%2Cformat&w=544&h=435&q=50",
-    price: 3900,
-  },
-  {
-    id: 7,
-    name: "Abducted",
-    description: "See You Later Ufo Black",
-    image:
-      "https://hatstore.imgix.net/OB1003614_1.jpg?auto=compress%2Cformat&w=544&h=435&q=50",
-    price: 3900,
-  },
-  {
-    id: 8,
-    name: "Iconic",
-    description: "Chili Black",
-    image:
-      "https://hatstore.imgix.net/OB1002436_1.jpg?auto=compress%2Cformat&w=544&h=435&q=50",
-    price: 2300,
-  },
-  {
-    id: 9,
-    name: "Fox",
-    description: "Know No Bounds Black",
-    image:
-      "https://hatstore.imgix.net/191972665622_1.jpg?auto=compress%2Cformat&w=544&h=435&q=50",
-    price: 1700,
-  },
-  {
-    id: 10,
-    name: "New Era",
-    description: "Red Bull Racing F1 23",
-    image:
-      "https://hatstore.imgix.net/196996568720_1.jpg?auto=compress%2Cformat&w=544&h=435&q=50",
-    price: 2560,
-  },
-  {
-    id: 11,
-    name: "Capslab",
-    description: "Looney Bunny Grey Trucker",
-    image:
-      "https://hatstore.imgix.net/3614001104895_1.jpg?auto=compress%2Cformat&w=544&h=435&q=50",
-    price: 2800,
-  },
-  {
-    id: 12,
-    name: "Stetson",
-    description: "Gasoline White Trucker",
-    image:
-      "https://hatstore.imgix.net/4043898886703_1.jpg?auto=compress%2Cformat&w=544&h=435&q=50",
-    price: 2500,
-  },
-];
+import Loader from "./components/Loader";
 
 function App() {
-  const products = initialData;
   const [cart, setCart] = useState([]);
-  const [cartVisibility, setCartVisibility] = useState(false);
   const [total, setTotal] = useState(0);
-  const [checkoutMessage, setCheckoutMessage] = useState(false);
+
+  const initialState = {
+    products: [],
+    loading: false,
+    cartContent: [],
+    cartVisibility: false,
+    totalAmount: 0,
+    checkoutMessage: false,
+  };
+
+  function reducer(state, action) {
+    switch (action.type) {
+      case "dataReceived":
+        return { ...state, products: action.payload };
+      case "startLoading":
+        return { ...state, loading: true };
+      case "stopLoader":
+        return { ...state, loading: false };
+      default:
+        return state;
+    }
+  }
+
+  const [
+    {
+      products,
+      cartContent,
+      cartVisibility,
+      totalAmount,
+      checkoutMessage,
+      loading,
+    },
+    dispatch,
+  ] = useReducer(reducer, initialState);
+
+  useEffect(function () {
+    async function fetchProducts() {
+      dispatch({ type: "startLoading" });
+      const res = await fetch("https://fakestoreapi.com/products/");
+      const data = await res.json();
+      dispatch({
+        type: "dataReceived",
+        payload: data.filter(
+          (product) =>
+            product.category === "men's clothing" ||
+            product.category === "women's clothing"
+        ),
+      });
+      dispatch({ type: "stopLoader" });
+    }
+    fetchProducts();
+  }, []);
 
   return (
     <div className="App">
-      <Navbar
-        cartVisibility={cartVisibility}
-        setCartVisibility={setCartVisibility}
-        cart={cart}
-      />
-      <ProductList>
-        {products.map((product) => (
-          <Product
-            key={product.id}
-            product={product}
-            products={products}
+      {loading ? (
+        <Loader />
+      ) : (
+        <>
+          <ProductList>
+            {products.map((product) => (
+              <Product
+                key={product.id}
+                product={product}
+                products={products}
+                cart={cart}
+                setCart={setCart}
+                total={total}
+                setTotal={setTotal}
+                checkoutMessage={checkoutMessage}
+              />
+            ))}
+          </ProductList>
+          <Cart
             cart={cart}
             setCart={setCart}
             total={total}
             setTotal={setTotal}
             checkoutMessage={checkoutMessage}
+            // setCheckoutMessage={setCheckoutMessage}
+            cartVisibility={cartVisibility}
+            // setCartVisibility={setCartVisibility}
           />
-        ))}
-      </ProductList>
-      {cartVisibility && (
-        <Cart
-          cart={cart}
-          setCart={setCart}
-          total={total}
-          setTotal={setTotal}
-          checkoutMessage={checkoutMessage}
-          setCheckoutMessage={setCheckoutMessage}
-          cartVisibility={cartVisibility}
-          setCartVisibility={setCartVisibility}
-        />
+        </>
       )}
     </div>
   );

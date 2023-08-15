@@ -71,12 +71,12 @@ li {
 }
 
 .productList {
+  max-height: 88vh;
   display: grid;
-  padding: 8rem 10rem;
+  padding: 2.6rem 10rem;
   grid-template-columns: repeat(4, 1fr);
   gap: 2.4rem;
   justify-items: center;
-  max-height: 63.5vh;
   overflow: auto;
 }
 
@@ -89,6 +89,7 @@ li {
   flex-direction: column;
   padding-bottom: 0.6rem;
   cursor: pointer;
+  width: 100%;
 }
 
 .productList li:hover {
@@ -101,7 +102,7 @@ li {
   display: flex;
   flex-direction: column;
   background-color: #fff;
-  padding: 2rem;
+  padding: 1.6rem;
   padding-bottom: 0.1rem;
   box-shadow: 0 0 1rem #dbdbdba2;
   border-radius: 5px;
@@ -109,6 +110,7 @@ li {
 
 .imgCover img {
   height: 10rem;
+  object-fit: contain;
 }
 
 .imgCover p {
@@ -118,36 +120,23 @@ li {
   padding: 0.1rem 0.4rem;
 }
 
-.productDetials {
-  display: flex;
-  gap: 0.6rem;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1.4rem 0;
-}
-
-.productDetials .productInfo {
+.productInfo {
   display: flex;
   flex-direction: column;
+  gap: 0.4rem;
+  justify-content: space-between;
+  padding: 0.8rem 0;
 }
 
-.productDetials p {
-  font-size: 0.8rem;
+.productInfo h4 {
+  font-size: 1rem;
+  color: #444;
+  opacity: 0.8;
 }
 
-.productDetials .btn {
-  border: none;
-  padding: 0.4rem 0.8rem;
-  font-family: "Outfit";
-  background-color: #2a9d8f;
-  border-radius: 2px;
-  color: #fff;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-.productDetials .btn:hover {
-  background-color: #0da492d0;
+.productInfo p {
+  font-size: 1rem;
+  font-weight: 500;
 }
 
 /* Cart CSS */
@@ -155,12 +144,11 @@ li {
   display: flex;
   flex-direction: column;
   gap: 1.6rem;
-  height: 85vh;
+  height: 94vh;
   width: 20rem;
   background: #fff;
   box-shadow: 0 1rem 1rem #e5e4e46a;
   padding: 1.2rem 1.8rem;
-  margin-top: 4rem;
 }
 
 .hide {
