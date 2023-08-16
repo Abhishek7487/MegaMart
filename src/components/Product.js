@@ -1,6 +1,14 @@
 import React from "react";
 
-function Product({ product, cart, setCart, total, setTotal, checkoutMessage }) {
+function Product({
+  product,
+  cart,
+  setCart,
+  total,
+  setTotal,
+  checkoutMessage,
+  dispatch,
+}) {
   function handleAddToCart() {
     if (cart.includes(product)) return;
     setCart([product, ...cart]);
@@ -10,7 +18,18 @@ function Product({ product, cart, setCart, total, setTotal, checkoutMessage }) {
   return (
     <li>
       <div className="imgCover">
-        <img src={product.image} alt="productImage" />
+        <div className="productActions">
+          <img className="addBtn" src="../../add.svg" alt="add" />
+          <img
+            className="viewBtn"
+            src="../../view.svg"
+            alt="view"
+            onClick={() =>
+              dispatch({ type: "viewProduct", payload: product.id })
+            }
+          />
+        </div>
+        <img src={product.image} alt="productImage" className="productImg" />
         <p>$ {product.price}</p>
       </div>
       <div className="productInfo">

@@ -3,6 +3,8 @@ import ProductList from "./components/ProductList";
 import Cart from "./components/Cart";
 import Product from "./components/Product";
 import Loader from "./components/Loader";
+import ProductViewScreen from "./components/ProductViewScreen";
+import Navbar from "./components/Navbar";
 
 function App() {
   const [cart, setCart] = useState([]);
@@ -11,6 +13,7 @@ function App() {
   const initialState = {
     products: [],
     loading: false,
+    activeProduct: null,
     cartContent: [],
     cartVisibility: false,
     totalAmount: 0,
@@ -25,6 +28,8 @@ function App() {
         return { ...state, loading: true };
       case "stopLoader":
         return { ...state, loading: false };
+      case "viewProduct":
+        return { ...state, activeProduct: action.payload };
       default:
         return state;
     }
@@ -33,6 +38,7 @@ function App() {
   const [
     {
       products,
+      activeProduct,
       cartContent,
       cartVisibility,
       totalAmount,
@@ -62,8 +68,13 @@ function App() {
 
   return (
     <div className="App">
-      {loading ? (
-        <Loader />
+      <Navbar dispatch={dispatch} />
+      {activeProduct ? (
+        <ProductViewScreen
+          product={
+            products.filter((product) => product.id === activeProduct)[0]
+          }
+        />
       ) : (
         <>
           <ProductList>
@@ -72,6 +83,7 @@ function App() {
                 key={product.id}
                 product={product}
                 products={products}
+                dispatch={dispatch}
                 cart={cart}
                 setCart={setCart}
                 total={total}
