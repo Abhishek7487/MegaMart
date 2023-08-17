@@ -51,7 +51,6 @@ function Cart({ dispatch, cartProducts, totalAmount, checkoutMessage }) {
                     key={product.id}
                     product={product}
                     dispatch={dispatch}
-                    totalAmount={totalAmount}
                   />
                 ))}
               </CartProductList>

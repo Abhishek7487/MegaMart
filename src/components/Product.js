@@ -29,10 +29,7 @@ function Product({ cartProducts, product, dispatch }) {
       <div className="productInfo">
         <h4>{product.category}</h4>
         <p>{product.title}</p>
-        <button
-          className="addToCartBtn"
-          onClick={() => dispatch({ type: "addToCart", payload: product })}
-        >
+        <button className="addToCartBtn" onClick={() => handleAddToCart()}>
           Add to cart
         </button>
       </div>

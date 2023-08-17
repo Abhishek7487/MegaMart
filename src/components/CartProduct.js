@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 
-function CartProduct({ product, dispatch, totalAmount }) {
+function CartProduct({ product, dispatch }) {
   const [quantity, setQuantity] = useState(1);
 
   function handleRemoveFromCart() {
     dispatch({ type: "removeFromCart", payload: { product, quantity } });
-    // setTotal(total - product.price * quantity);
   }
 
   function handleIncreaseQuantity() {
