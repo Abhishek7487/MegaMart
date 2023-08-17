@@ -1,58 +1,61 @@
-import React from "react";
+import React, { useEffect } from "react";
 import CartProductList from "./CartProductList";
 import CartCheckout from "./CartCheckout";
 import EmptyCart from "../empty-cart.png";
 import CartProduct from "./CartProduct";
+import { gsap } from "gsap";
 
-function Cart({
-  cart,
-  setCart,
-  total,
-  setTotal,
-  checkoutMessage,
-  setCheckoutMessage,
-  cartVisibility,
-  setCartVisibility,
-}) {
+function Cart({ dispatch, cartProducts, totalAmount, checkoutMessage }) {
+  useEffect(function () {
+    let timeLine = gsap.timeline();
+    timeLine.fromTo(
+      ".cart",
+      {
+        x: 1000,
+      },
+      { x: 0, duration: 0.2 }
+    );
+  }, []);
+
   function handleReturnToCart() {
-    setCheckoutMessage(false);
-    setTotal(0);
-    setCartVisibility(!cartVisibility);
+    dispatch({ type: "returnToCart" });
   }
 
   return (
-    <div className={!cartVisibility ? "cart hide" : "cart show"}>
+    <div className="cart">
       {checkoutMessage ? (
         <div className="checkoutMessage">
           <p>
-            Thank you! for your purchase of{" "}
-            <span>₹{total.toLocaleString("en-IN")}</span>😊
+            Thank you! for your purchase of <br />
+            <span>$ {totalAmount.toLocaleString("en-US")}</span>😊
           </p>
-          <button onClick={handleReturnToCart}>Shop more</button>
+          <button onClick={() => handleReturnToCart()}>Shop more</button>
         </div>
       ) : (
         <>
-          <h3>Your Cart</h3>
-          {total > 0 ? (
+          <div className="cartHeader">
+            <h3>Your Cart</h3>
+            <img
+              src="../../rightarrow.svg"
+              className="backBtn"
+              alt="rightarrow"
+              onClick={() => dispatch({ type: "toggleCartVisibility" })}
+            />
+          </div>
+
+          {totalAmount > 0 ? (
             <>
               <CartProductList>
-                {cart.map((product) => (
+                {cartProducts.map((product) => (
                   <CartProduct
-                    product={product}
                     key={product.id}
-                    cart={cart}
-                    setCart={setCart}
-                    total={total}
-                    setTotal={setTotal}
+                    product={product}
+                    dispatch={dispatch}
+                    totalAmount={totalAmount}
                   />
                 ))}
               </CartProductList>
-              <CartCheckout
-                setCart={setCart}
-                total={total}
-                setTotal={setTotal}
-                setCheckoutMessage={setCheckoutMessage}
-              />
+              <CartCheckout totalAmount={totalAmount} dispatch={dispatch} />
             </>
           ) : (
             <div className="emptyCart">

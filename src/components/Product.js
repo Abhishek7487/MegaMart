@@ -1,32 +1,26 @@
 import React from "react";
 
-function Product({
-  product,
-  cart,
-  setCart,
-  total,
-  setTotal,
-  checkoutMessage,
-  dispatch,
-}) {
+function Product({ cartProducts, product, dispatch }) {
   function handleAddToCart() {
-    if (cart.includes(product)) return;
-    setCart([product, ...cart]);
-    setTotal(total + product.price);
+    if (cartProducts.includes(product)) return;
+    dispatch({ type: "addToCart", payload: product });
   }
 
   return (
     <li>
       <div className="imgCover">
         <div className="productActions">
-          <img className="addBtn" src="../../add.svg" alt="add" />
+          <img
+            className="addBtn"
+            src="../../add.svg"
+            alt="add"
+            onClick={() => handleAddToCart()}
+          />
           <img
             className="viewBtn"
             src="../../view.svg"
             alt="view"
-            onClick={() =>
-              dispatch({ type: "viewProduct", payload: product.id })
-            }
+            onClick={() => dispatch({ type: "viewProduct", payload: product })}
           />
         </div>
         <img src={product.image} alt="productImage" className="productImg" />
@@ -35,7 +29,10 @@ function Product({
       <div className="productInfo">
         <h4>{product.category}</h4>
         <p>{product.title}</p>
-        <button className="addToCartBtn" onClick={handleAddToCart}>
+        <button
+          className="addToCartBtn"
+          onClick={() => dispatch({ type: "addToCart", payload: product })}
+        >
           Add to cart
         </button>
       </div>

@@ -1,37 +1,70 @@
-import React, { useEffect, useReducer, useState } from "react";
+import React, { useEffect, useReducer } from "react";
 import ProductList from "./components/ProductList";
 import Cart from "./components/Cart";
 import Product from "./components/Product";
-import Loader from "./components/Loader";
 import ProductViewScreen from "./components/ProductViewScreen";
 import Navbar from "./components/Navbar";
 
 function App() {
-  const [cart, setCart] = useState([]);
-  const [total, setTotal] = useState(0);
-
   const initialState = {
     products: [],
-    loading: false,
     activeProduct: null,
-    cartContent: [],
+    cartProducts: [],
     cartVisibility: false,
     totalAmount: 0,
     checkoutMessage: false,
   };
 
+  // Reducer
   function reducer(state, action) {
     switch (action.type) {
       case "dataReceived":
         return { ...state, products: action.payload };
-      case "startLoading":
-        return { ...state, loading: true };
-      case "stopLoader":
-        return { ...state, loading: false };
       case "viewProduct":
         return { ...state, activeProduct: action.payload };
+      case "toggleCartVisibility":
+        return { ...state, cartVisibility: !state.cartVisibility };
+      case "addToCart":
+        return {
+          ...state,
+          cartProducts: [action.payload, ...state.cartProducts],
+          totalAmount: state.totalAmount + action.payload.price,
+        };
+      case "removeFromCart":
+        return {
+          ...state,
+          cartProducts: state.cartProducts.filter(
+            (product) => product.id !== action.payload.product.id
+          ),
+          totalAmount:
+            state.totalAmount -
+            action.payload.product.price * action.payload.quantity,
+        };
+      case "quantityIncreased":
+        return {
+          ...state,
+          totalAmount: state.totalAmount + action.payload,
+        };
+      case "quantityDecreased":
+        return {
+          ...state,
+          totalAmount: state.totalAmount - action.payload,
+        };
+      case "checkOut":
+        return {
+          ...state,
+          cartProducts: [],
+          checkoutMessage: true,
+        };
+      case "returnToCart":
+        return {
+          ...state,
+          checkoutMessage: false,
+          totalAmount: 0,
+          cartVisibility: false,
+        };
       default:
-        return state;
+        return "Failed";
     }
   }
 
@@ -39,18 +72,16 @@ function App() {
     {
       products,
       activeProduct,
-      cartContent,
+      cartProducts = [],
       cartVisibility,
       totalAmount,
       checkoutMessage,
-      loading,
     },
     dispatch,
   ] = useReducer(reducer, initialState);
 
   useEffect(function () {
     async function fetchProducts() {
-      dispatch({ type: "startLoading" });
       const res = await fetch("https://fakestoreapi.com/products/");
       const data = await res.json();
       dispatch({
@@ -61,7 +92,6 @@ function App() {
             product.category === "women's clothing"
         ),
       });
-      dispatch({ type: "stopLoader" });
     }
     fetchProducts();
   }, []);
@@ -70,11 +100,22 @@ function App() {
     <div className="App">
       <Navbar dispatch={dispatch} />
       {activeProduct ? (
-        <ProductViewScreen
-          product={
-            products.filter((product) => product.id === activeProduct)[0]
-          }
-        />
+        <>
+          <ProductViewScreen
+            product={activeProduct}
+            cartProducts={cartProducts}
+            dispatch={dispatch}
+          />
+          {cartVisibility && (
+            <Cart
+              checkoutMessage={checkoutMessage}
+              dispatch={dispatch}
+              cartVisibility={cartVisibility}
+              cartProducts={cartProducts}
+              totalAmount={totalAmount}
+            />
+          )}
+        </>
       ) : (
         <>
           <ProductList>
@@ -82,26 +123,20 @@ function App() {
               <Product
                 key={product.id}
                 product={product}
-                products={products}
                 dispatch={dispatch}
-                cart={cart}
-                setCart={setCart}
-                total={total}
-                setTotal={setTotal}
-                checkoutMessage={checkoutMessage}
+                cartProducts={cartProducts}
               />
             ))}
           </ProductList>
-          <Cart
-            cart={cart}
-            setCart={setCart}
-            total={total}
-            setTotal={setTotal}
-            checkoutMessage={checkoutMessage}
-            // setCheckoutMessage={setCheckoutMessage}
-            cartVisibility={cartVisibility}
-            // setCartVisibility={setCartVisibility}
-          />
+          {cartVisibility && (
+            <Cart
+              checkoutMessage={checkoutMessage}
+              dispatch={dispatch}
+              cartVisibility={cartVisibility}
+              cartProducts={cartProducts}
+              totalAmount={totalAmount}
+            />
+          )}
         </>
       )}
     </div>

@@ -1,9 +1,4 @@
-export default function Navbar({
-  dispatch,
-  cartVisibility,
-  setCartVisibility,
-  cart,
-}) {
+export default function Navbar({ dispatch }) {
   return (
     <nav className="navbar">
       <img
@@ -13,7 +8,12 @@ export default function Navbar({
         onClick={() => dispatch({ type: "viewProduct", payload: null })}
       />
       <p>TrendWardrobe</p>
-      <img src="../../Cart.svg" alt="cart" className="cartIcon" />
+      <img
+        src="../../Cart.svg"
+        alt="cart"
+        className="cartIcon"
+        onClick={() => dispatch({ type: "toggleCartVisibility" })}
+      />
     </nav>
   );
 }

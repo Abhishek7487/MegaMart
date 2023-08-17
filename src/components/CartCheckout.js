@@ -1,16 +1,15 @@
 import React from "react";
 
-function CartCheckout({ total, setCart, setCheckoutMessage }) {
+function CartCheckout({ totalAmount, dispatch }) {
   function handleCheckout() {
-    setCart([]);
-    setCheckoutMessage(true);
+    dispatch({ type: "checkOut" });
   }
 
   return (
     <div className="cartCheckout">
       <h3>Total</h3>
-      <h1>₹ {total.toLocaleString("en-IN")}</h1>
-      <button className="checkoutBtn" onClick={handleCheckout}>
+      <h1>$ {totalAmount.toFixed(2)}</h1>
+      <button className="checkoutBtn" onClick={() => handleCheckout()}>
         Checkout
       </button>
     </div>
