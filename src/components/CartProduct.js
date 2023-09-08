@@ -23,7 +23,7 @@ function CartProduct({ product, dispatch }) {
       <img src={product.image} alt="productImage" />
       <div className="cProductInfo">
         <h5>{product.title}</h5>
-        <h4>₹ {(product.price * quantity).toFixed(2)}</h4>
+        <h4>$ {(product.price * quantity).toFixed(2)}</h4>
       </div>
       <div className="action">
         <i

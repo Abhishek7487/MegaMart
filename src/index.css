@@ -34,6 +34,7 @@ li {
 
 .navbar {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   background-color: #fff;
   padding: 1rem 10rem;
@@ -60,9 +61,10 @@ li {
 .cartStats .itemNumbers {
   display: flex;
   position: absolute;
-  bottom: -0.4rem;
+  bottom: -2.4rem;
   right: -0.4rem;
-  background: #f88749;
+  background: #2a9d8f;
+  font-size: 0.8rem;
   height: 1rem;
   width: 1rem;
   padding: 0.2rem;
@@ -478,11 +480,6 @@ li {
   .productView div {
     padding: 1rem 10rem;
   }
-
-  .productView div .cart {
-    height: 87vh;
-    margin-top: 3.8rem;
-  }
 }
 
 @media screen and (max-width: 595px) {
@@ -510,12 +507,12 @@ li {
   }
 
   .imgCover .productImg {
-    height: 8rem;
-    width: 8rem;
+    height: 6rem;
+    width: 6rem;
   }
 
-  .imgCover:hover .productImg {
-    transform: scale(1.2);
+  .imgCover .productActions {
+    display: flex;
   }
 
   .imgCover .productActions .addBtn {
@@ -562,7 +559,7 @@ li {
   }
 
   .cart {
-    width: 92%;
+    width: auto;
     right: 0;
     left: 0;
   }

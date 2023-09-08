@@ -98,7 +98,7 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar dispatch={dispatch} />
+      <Navbar dispatch={dispatch} cartProducts={cartProducts} />
       {activeProduct ? (
         <>
           <ProductViewScreen
