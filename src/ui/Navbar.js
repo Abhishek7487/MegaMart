@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Navbar({ dispatch, cartProducts }) {
   return (
@@ -13,12 +13,9 @@ export default function Navbar({ dispatch, cartProducts }) {
             <div className="itemNumbers">{cartProducts.length}</div>
           </div>
         )} */}
-        <img
-          src="../../Cart.svg"
-          alt="cart"
-          className="cartIcon"
-          onClick={() => dispatch({ type: "toggleCartVisibility" })}
-        />
+        <Link to="/cart">
+          <img src="../../Cart.svg" alt="cart" className="cartIcon" />
+        </Link>
       </div>
     </nav>
   );

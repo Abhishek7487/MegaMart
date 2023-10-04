@@ -4,6 +4,7 @@ import ProductViewScreen from "./features/products/ProductViewScreen";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Home from "./ui/Home";
 import AppLayout from "./ui/AppLayout";
+import Cart from "./features/cart/Cart";
 
 function App() {
   // // Reducer
@@ -74,6 +75,10 @@ function App() {
         {
           element: <ProductViewScreen />,
           path: "/productView/:id",
+        },
+        {
+          element: <Cart />,
+          path: "/cart",
         },
       ],
     },

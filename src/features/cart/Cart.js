@@ -3,27 +3,18 @@ import CartProductList from "./CartProductList";
 import CartCheckout from "./CartCheckout";
 import EmptyCart from "../../empty-cart.png";
 import CartProduct from "./CartProduct";
-import { gsap } from "gsap";
+import { useSelector } from "react-redux";
 
-function Cart({ dispatch, cartProducts, totalAmount, checkoutMessage }) {
-  useEffect(function () {
-    let timeLine = gsap.timeline();
-    timeLine.fromTo(
-      ".cart",
-      {
-        x: 1000,
-      },
-      { x: 0, duration: 0.2 }
-    );
-  }, []);
+function Cart() {
+  const { total, cartProductList } = useSelector((state) => state.cart);
 
   function handleReturnToCart() {
-    dispatch({ type: "returnToCart" });
+    // dispatch({ type: "returnToCart" });
   }
 
   return (
     <div className="cart">
-      {checkoutMessage ? (
+      {/* {checkoutMessage ? (
         <div className="checkoutMessage">
           <p>
             Thank you! for your purchase of <br />
@@ -32,38 +23,21 @@ function Cart({ dispatch, cartProducts, totalAmount, checkoutMessage }) {
           <button onClick={() => handleReturnToCart()}>Shop more</button>
         </div>
       ) : (
+        <> */}
+      <h3>Your Cart</h3>
+      {total > 0 ? (
         <>
-          <div className="cartHeader">
-            <h3>Your Cart</h3>
-            <img
-              src="../../rightarrow.svg"
-              className="backBtn"
-              alt="rightarrow"
-              onClick={() => dispatch({ type: "toggleCartVisibility" })}
-            />
-          </div>
-
-          {totalAmount > 0 ? (
-            <>
-              <CartProductList>
-                {cartProducts.map((product) => (
-                  <CartProduct
-                    key={product.id}
-                    product={product}
-                    dispatch={dispatch}
-                  />
-                ))}
-              </CartProductList>
-              <CartCheckout totalAmount={totalAmount} dispatch={dispatch} />
-            </>
-          ) : (
-            <div className="emptyCart">
-              <img src={EmptyCart} alt="emptyCart" />
-              <p>Your cart is empty!</p>
-            </div>
-          )}
+          <CartProductList cartProductList={cartProductList} />
+          {/* <CartCheckout totalAmount={totalAmount} dispatch={dispatch} /> */}
         </>
+      ) : (
+        <div className="emptyCart">
+          <img src={EmptyCart} alt="emptyCart" />
+          <p>Your cart is empty!</p>
+        </div>
       )}
+      {/* </> */}
+      {/* )} */}
     </div>
   );
 }

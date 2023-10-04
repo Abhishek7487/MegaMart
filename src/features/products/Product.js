@@ -1,14 +1,21 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
+import { addToCart } from "../cart/cartSlice";
 
 function Product({ product }) {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const cartProductList = useSelector((state) => state.cart.cartProductList);
 
   function handleAddToCart() {
-    // if (cartProducts.includes(product)) return;
-    // dispatch({ type: "addToCart", payload: product });
+    const isIncluded =
+      cartProductList.filter((item) => item.id === product.id).length > 0;
+
+    if (isIncluded) return;
+
+    dispatch(addToCart(product));
   }
 
   function handleViewProduct() {
@@ -19,11 +26,11 @@ function Product({ product }) {
     <li>
       <div className="imgCover">
         <div className="productActions">
-          <embed
+          <img
             className="addBtn"
             src="../../add.svg"
             alt="add"
-            // onClick={() => handleAddToCart()}
+            onClick={handleAddToCart}
           />
           <img
             className="viewBtn"

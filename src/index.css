@@ -236,8 +236,8 @@ li {
 }
 
 .productView img {
-  height: auto;
-  width: 100%;
+  height: 16rem;
+  width: auto;
 }
 
 .productView div {
@@ -276,31 +276,12 @@ li {
 
 /* Cart CSS */
 .cart {
+  height: auto;
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
-  height: 100vh;
-  width: 20rem;
   background: #fff;
-  box-shadow: 0 1rem 1rem #e5e4e46a;
-  padding: 1.2rem 1.8rem;
-  position: fixed;
-  right: 0;
-  top: 0;
-  z-index: 10;
-}
-
-.cart .cartHeader {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.backBtn {
-  display: flex;
-  background-color: #fff;
-  border: none;
-  cursor: pointer;
+  padding: 8rem 12rem;
 }
 
 /* cartList */

@@ -1,26 +1,26 @@
 import React, { useState } from "react";
 
-function CartProduct({ product, dispatch }) {
+function CartProduct({ product }) {
   const [quantity, setQuantity] = useState(1);
 
   function handleRemoveFromCart() {
-    dispatch({ type: "removeFromCart", payload: { product, quantity } });
+    // dispatch({ type: "removeFromCart", payload: { product, quantity } });
   }
 
   function handleIncreaseQuantity() {
-    setQuantity(quantity + 1);
-    dispatch({ type: "quantityIncreased", payload: product.price });
+    // setQuantity(quantity + 1);
+    // dispatch({ type: "quantityIncreased", payload: product.price });
   }
 
   function handleDecreaseQuantity() {
-    if (quantity === 1) return;
-    setQuantity(quantity - 1);
-    dispatch({ type: "quantityDecreased", payload: product.price });
+    // if (quantity === 1) return;
+    // setQuantity(quantity - 1);
+    // dispatch({ type: "quantityDecreased", payload: product.price });
   }
 
   return (
     <li className="cartProduct">
-      <img src={product.image} alt="productImage" />
+      <img src={product.images[0]} alt="productImage" />
       <div className="cProductInfo">
         <h5>{product.title}</h5>
         <h4>$ {(product.price * quantity).toFixed(2)}</h4>
