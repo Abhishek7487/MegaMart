@@ -52,6 +52,34 @@ li {
   cursor: pointer;
 }
 
+.home {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2.4rem;
+}
+
+.home h1 {
+  text-align: center;
+}
+
+.home button {
+  padding: 0.8rem 2.4rem;
+  border: none;
+  background: #2a9d8f;
+  color: #fff;
+  font-size: 1.2rem;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.home button:hover {
+  transform: scale(1.02);
+}
+
 .cartStats {
   display: flex;
   align-items: center;

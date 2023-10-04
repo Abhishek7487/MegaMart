@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import CartProductList from "./CartProductList";
 import CartCheckout from "./CartCheckout";
-import EmptyCart from "../empty-cart.png";
+import EmptyCart from "../../empty-cart.png";
 import CartProduct from "./CartProduct";
 import { gsap } from "gsap";
 

@@ -1,26 +1,26 @@
 import React from "react";
 
-function Product({ cartProducts, product, dispatch }) {
+function Product({ product }) {
   function handleAddToCart() {
-    if (cartProducts.includes(product)) return;
-    dispatch({ type: "addToCart", payload: product });
+    // if (cartProducts.includes(product)) return;
+    // dispatch({ type: "addToCart", payload: product });
   }
-
+  console.log(product);
   return (
     <li>
       <div className="imgCover">
         <div className="productActions">
           <img
             className="addBtn"
-            src="../../add.svg"
+            src="/public/add.svg"
             alt="add"
             onClick={() => handleAddToCart()}
           />
           <img
             className="viewBtn"
-            src="../../view.svg"
+            src="/public/view.svg"
             alt="view"
-            onClick={() => dispatch({ type: "viewProduct", payload: product })}
+            // onClick={() => dispatch({ type: "viewProduct", payload: product })}
           />
         </div>
         <img src={product.image} alt="productImage" className="productImg" />

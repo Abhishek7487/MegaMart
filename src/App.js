@@ -1,9 +1,11 @@
 import React, { useEffect, useReducer } from "react";
-import ProductList from "./components/ProductList";
-import Cart from "./components/Cart";
-import Product from "./components/Product";
-import ProductViewScreen from "./components/ProductViewScreen";
-import Navbar from "./components/Navbar";
+import ProductsList from "./features/products/ProductsList";
+import Cart from "./features/cart/Cart";
+import Product from "./features/products/Product";
+import ProductViewScreen from "./features/products/ProductViewScreen";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import Home from "./ui/Home";
+import AppLayout from "./ui/AppLayout";
 
 function App() {
   const initialState = {
@@ -80,24 +82,33 @@ function App() {
     dispatch,
   ] = useReducer(reducer, initialState);
 
-  useEffect(function () {
-    async function fetchProducts() {
-      const res = await fetch("https://fakestoreapi.com/products/");
-      const data = await res.json();
-      dispatch({
-        type: "dataReceived",
-        payload: data.filter(
-          (product) =>
-            product.category === "men's clothing" ||
-            product.category === "women's clothing"
-        ),
-      });
-    }
-    fetchProducts();
-  }, []);
+  const router = createBrowserRouter([
+    {
+      element: <AppLayout />,
+      children: [
+        {
+          element: <Home />,
+          path: "/",
+        },
+        {
+          element: <ProductsList />,
+          path: "/productsList",
+        },
+        {
+          element: <ProductViewScreen />,
+          path: "/productView",
+        },
+      ],
+    },
+  ]);
 
-  return (
-    <div className="App">
+  return <RouterProvider router={router} />;
+}
+
+export default App;
+
+/*
+<div className="App">
       <Navbar dispatch={dispatch} cartProducts={cartProducts} />
       {activeProduct ? (
         <>
@@ -140,7 +151,4 @@ function App() {
         </>
       )}
     </div>
-  );
-}
-
-export default App;
+*/
