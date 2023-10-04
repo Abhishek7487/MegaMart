@@ -145,6 +145,7 @@ li {
 .imgCover {
   display: flex;
   flex-direction: column;
+  align-items: center;
   background-color: #fff;
   padding: 1.6rem;
   padding-bottom: 0.1rem;
@@ -187,6 +188,7 @@ li {
 
 .imgCover .productImg {
   height: 10rem;
+  width: 12rem;
   object-fit: contain;
   transition: all 0.2s;
 }
@@ -223,15 +225,19 @@ li {
 
 .productView {
   height: 100vh;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   align-items: center;
   justify-content: center;
+  place-items: center;
   gap: 4.6rem;
   padding: 0 14rem;
+  object-fit: cover;
 }
 
 .productView img {
-  height: 26rem;
+  height: auto;
+  width: 100%;
 }
 
 .productView div {
@@ -494,19 +500,19 @@ li {
 
   .productView {
     height: fit-content;
-    flex-direction: column;
+    grid-template-columns: 1fr;
     justify-content: start;
     padding: 3.6rem;
     padding-top: 8rem;
-    gap: 2.4rem;
+    gap: 0;
   }
 
   .productView img {
-    height: 18rem;
+    height: auto;
   }
 
   .productView div {
-    padding: 1rem 10rem;
+    place-self: start;
   }
 }
 
@@ -562,10 +568,6 @@ li {
   .productView {
     padding: 1rem;
     padding-top: 6.8rem;
-  }
-
-  .productView div {
-    padding: 1rem 2rem;
   }
 
   .addToCartBtn {

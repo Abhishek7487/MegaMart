@@ -10,25 +10,16 @@ const initialState = {
 export const fetchProducts = createAsyncThunk(
   "products/fetchProducts",
   async function () {
-    const res = await fetch("https://fakestoreapi.com/products/");
+    const res = await fetch("https://dummyjson.com/products");
     const data = await res.json();
-    const filteredData = data.filter(
-      (product) =>
-        product.category === "men's clothing" ||
-        product.category === "women's clothing"
-    );
-    return filteredData;
+    return data.products;
   }
 );
 
 const ProductsSlice = createSlice({
   name: "products",
   initialState,
-  reducers: {
-    changeActiveProduct(state, action) {
-      state.activeProduct = action.payload;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchProducts.pending, (state) => {
@@ -44,7 +35,5 @@ const ProductsSlice = createSlice({
       });
   },
 });
-
-export const { changeActiveProduct } = ProductsSlice.actions;
 
 export default ProductsSlice.reducer;

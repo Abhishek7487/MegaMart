@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "./productsSlice";
+import Product from "./Product";
 
 function ProductList() {
   const dispatch = useDispatch();
@@ -11,14 +12,11 @@ function ProductList() {
     dispatch(fetchProducts());
   }, [dispatch]);
 
-  console.log(productList);
-
   return (
     <div className="productList">
-      <h1>Product List</h1>
-      {/* {products.map((product) => (
+      {productList.map((product) => (
         <Product key={product.id} product={product} />
-      ))} */}
+      ))}
     </div>
   );
 }
