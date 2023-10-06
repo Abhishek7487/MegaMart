@@ -22,7 +22,7 @@ function CartProduct({ product }) {
     <li className="cartProduct">
       <img src={product.images[0]} alt="productImage" />
       <div className="cProductInfo">
-        <h5>{product.title}</h5>
+        <p>{product.title}</p>
         <h4>$ {(product.price * quantity).toFixed(2)}</h4>
       </div>
       <div className="action">

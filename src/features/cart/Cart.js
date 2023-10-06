@@ -6,7 +6,7 @@ import CartProduct from "./CartProduct";
 import { useSelector } from "react-redux";
 
 function Cart() {
-  const { total, cartProductList } = useSelector((state) => state.cart);
+  const { cartPrice, cartProductList } = useSelector((state) => state.cart);
 
   function handleReturnToCart() {
     // dispatch({ type: "returnToCart" });
@@ -25,7 +25,7 @@ function Cart() {
       ) : (
         <> */}
       <h3>Your Cart</h3>
-      {total > 0 ? (
+      {cartPrice > 0 ? (
         <>
           <CartProductList cartProductList={cartProductList} />
           {/* <CartCheckout totalAmount={totalAmount} dispatch={dispatch} /> */}

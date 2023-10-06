@@ -16,6 +16,7 @@ function Product({ product }) {
     if (isIncluded) return;
 
     dispatch(addToCart(product));
+    console.log(cartProductList);
   }
 
   function handleViewProduct() {

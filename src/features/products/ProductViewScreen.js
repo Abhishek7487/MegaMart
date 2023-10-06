@@ -17,8 +17,9 @@ function ProductViewScreen() {
       cartProductList.filter((item) => item.id === activeProduct.id).length > 0;
     if (isIncluded) return;
     dispatch(addToCart(activeProduct));
-    console.log(cartProductList);
   }
+
+  console.log(cartProductList);
 
   return (
     <div className="productView">
