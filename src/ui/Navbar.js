@@ -1,6 +1,8 @@
+import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 
-export default function Navbar({ dispatch, cartProducts }) {
+export default function Navbar() {
+  const cartProductList = useSelector((state) => state.cart.cartProductList);
   return (
     <nav className="navbar">
       <Link to="/productsList">
@@ -8,11 +10,11 @@ export default function Navbar({ dispatch, cartProducts }) {
       </Link>
       <p>TrendWardrobe</p>
       <div>
-        {/* {cartProducts.length > 0 && (
+        {cartProductList.length > 0 && (
           <div className="cartStats">
-            <div className="itemNumbers">{cartProducts.length}</div>
+            <div className="itemNumbers">{cartProductList.length}</div>
           </div>
-        )} */}
+        )}
         <Link to="/cart">
           <img src="../../Cart.svg" alt="cart" className="cartIcon" />
         </Link>
