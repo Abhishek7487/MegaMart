@@ -425,6 +425,50 @@ li {
   display: none;
 }
 
+/* Order Overview */
+.orderOverview {
+  margin: 8rem 24rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+.orderProductSummary {
+  display: flex;
+  justify-content: space-between;
+}
+
+.orderProductSummary .left {
+  display: flex;
+  gap: 2rem;
+  align-items: start;
+}
+.orderProductSummary .left div {
+  padding-top: 1rem;
+}
+
+.orderProductSummary .left img {
+  width: 6rem;
+}
+
+.orderProductSummary .right {
+  display: flex;
+  gap: 2rem;
+  align-items: end;
+  padding-bottom: 1rem;
+}
+
+.orderProductSummary .right {
+  font-size: 1.2rem;
+}
+
+.ProductsTotal {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  justify-content: end;
+}
+
 /* Media Queries */
 @media screen and (max-width: 1490px) {
   .productList {

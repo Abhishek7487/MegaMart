@@ -2,17 +2,24 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { resetCart } from "./cartSlice";
+import { setOrder } from "../order/orderSlice";
 
 function CartCheckout() {
   const dispatch = useDispatch();
-  const cartPrice = useSelector((state) => state.cart.cartPrice);
+  const { cartProductList, cartPrice } = useSelector((state) => state.cart);
 
-  function handleResetCart() {
+  const newOrder = {
+    list: cartProductList,
+    price: cartPrice,
+  };
+
+  function handleCheckout() {
+    dispatch(setOrder(newOrder));
     dispatch(resetCart());
   }
 
   return (
-    <Link to="/order" onClick={handleResetCart} className="cartCheckout">
+    <Link to="/order" onClick={handleCheckout} className="cartCheckout">
       <h3>Checkout &rarr;</h3>
       <div>
         <h3>Total :</h3>

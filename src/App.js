@@ -5,6 +5,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Home from "./ui/Home";
 import AppLayout from "./ui/AppLayout";
 import Cart from "./features/cart/Cart";
+import OrderOverview from "./features/order/OrderOverview";
 
 function App() {
   // // Reducer
@@ -79,6 +80,10 @@ function App() {
         {
           element: <Cart />,
           path: "/cart",
+        },
+        {
+          element: <OrderOverview />,
+          path: "/order",
         },
       ],
     },
