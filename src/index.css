@@ -493,18 +493,14 @@ li {
   .productView {
     height: fit-content;
     grid-template-columns: 1fr;
-    justify-content: start;
+    justify-content: space-between;
     padding: 3.6rem;
     padding-top: 8rem;
-    gap: 0;
   }
 
   .productView img {
-    height: auto;
-  }
-
-  .productView div {
-    place-self: start;
+    height: 20rem;
+    margin: 0 auto;
   }
 
   .cart {
@@ -563,8 +559,7 @@ li {
   }
 
   .productView {
-    padding: 1rem;
-    padding-top: 6.8rem;
+    padding: 8.6rem 2rem;
   }
 
   .addToCartBtn {
