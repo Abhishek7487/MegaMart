@@ -17,19 +17,23 @@ const cartSlice = createSlice({
       });
     },
     removeFromCart(state, action) {
-      state.cartProductList.filter((item) => item.id !== action.payload.id);
+      state.cartProductList = state.cartProductList.filter(
+        (item) => item.id !== action.payload
+      );
     },
     increaseQuantity(state, action) {
       const item = state.cartProductList.find(
         (product) => product.id === action.payload
       );
       item.quantity++;
+      item.totalPrice = item.quantity * item.price;
     },
     decreaseQuantity(state, action) {
       const item = state.cartProductList.find(
         (product) => product.id === action.payload
       );
       item.quantity--;
+      item.totalPrice = item.quantity * item.price;
     },
   },
 });

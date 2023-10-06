@@ -1,21 +1,28 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import {
+  decreaseQuantity,
+  increaseQuantity,
+  removeFromCart,
+} from "./cartSlice";
 
 function CartProduct({ product }) {
+  const dispatch = useDispatch();
   const [quantity, setQuantity] = useState(1);
 
   function handleRemoveFromCart() {
-    // dispatch({ type: "removeFromCart", payload: { product, quantity } });
+    dispatch(removeFromCart(product.id));
   }
 
   function handleIncreaseQuantity() {
-    // setQuantity(quantity + 1);
-    // dispatch({ type: "quantityIncreased", payload: product.price });
+    setQuantity(quantity + 1);
+    dispatch(increaseQuantity(product.id));
   }
 
   function handleDecreaseQuantity() {
-    // if (quantity === 1) return;
-    // setQuantity(quantity - 1);
-    // dispatch({ type: "quantityDecreased", payload: product.price });
+    if (quantity === 1) return;
+    setQuantity(quantity - 1);
+    dispatch(decreaseQuantity(product.id));
   }
 
   return (
