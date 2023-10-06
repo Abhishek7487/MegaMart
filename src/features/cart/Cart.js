@@ -28,7 +28,7 @@ function Cart() {
       {cartPrice > 0 ? (
         <>
           <CartProductList />
-          {/* <CartCheckout totalAmount={totalAmount} dispatch={dispatch} /> */}
+          <CartCheckout />
         </>
       ) : (
         <div className="emptyCart">

@@ -3,7 +3,7 @@ import Navbar from "./Navbar";
 
 function AppLayout() {
   return (
-    <div>
+    <div className="appLayout">
       <Navbar />
       <Outlet />
     </div>

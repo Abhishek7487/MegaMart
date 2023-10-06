@@ -22,14 +22,13 @@ li {
   list-style: none;
 }
 
-.App {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 2rem;
-  background-color: #ffffff;
-  position: relative;
-  overflow-x: hidden;
+.appLayout {
+  height: 100vb;
+  overflow: auto;
+}
+
+.appLayout::-webkit-scrollbar {
+  display: none;
 }
 
 .navbar {
@@ -281,7 +280,7 @@ li {
   flex-direction: column;
   gap: 1.2rem;
   background: #fff;
-  padding: 8rem 24rem 0 24rem;
+  margin: 8rem 24rem 0 24rem;
 }
 
 /* cartList */
@@ -310,7 +309,6 @@ li {
 }
 
 .cartProduct img {
-  /* height: 3rem; */
   width: 5rem;
 }
 
@@ -362,34 +360,23 @@ li {
 
 /* cartCheckout */
 .cartCheckout {
-  height: 26vh;
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  justify-content: center;
-  padding: 1.6rem 0;
-  gap: 0.8rem;
-}
-
-.cartCheckout h1 {
-  color: #333333;
-}
-
-.cartCheckout .checkoutBtn {
-  width: 50%;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2.8rem;
   background-color: #2a9d8f;
   color: #fff;
-  padding: 0.8rem 0;
-  font-size: 1.2rem;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-  transition: all 0.2s;
+  text-decoration: none;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
 }
 
-.checkoutBtn:hover {
-  background-color: #2a9d8f;
-  box-shadow: 0 0.4rem 1rem #a4a3a3b6;
+.cartCheckout div {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
 }
 
 /* Empty Cart */
@@ -450,8 +437,8 @@ li {
   }
 
   .cart {
-    padding-left: 20rem;
-    padding-right: 20rem;
+    margin-left: 20rem;
+    margin-right: 20rem;
   }
 }
 
@@ -469,8 +456,8 @@ li {
   }
 
   .cart {
-    padding-left: 16rem;
-    padding-right: 16rem;
+    margin-left: 16rem;
+    margin-right: 16rem;
   }
 }
 
@@ -483,8 +470,8 @@ li {
     padding: 1rem 6rem;
   }
   .cart {
-    padding-left: 14rem;
-    padding-right: 14rem;
+    margin-left: 14rem;
+    margin-right: 14rem;
   }
 }
 
@@ -521,8 +508,8 @@ li {
   }
 
   .cart {
-    padding-left: 8rem;
-    padding-right: 8rem;
+    margin-left: 8rem;
+    margin-right: 8rem;
   }
 }
 
@@ -599,9 +586,9 @@ li {
   }
 
   .cart {
-    padding-left: 2rem;
-    padding-right: 2rem;
-    padding-top: 6rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    margin-top: 6rem;
   }
 
   .cartProductList {

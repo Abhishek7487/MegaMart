@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   decreaseQuantity,
   increaseQuantity,
@@ -8,20 +8,23 @@ import {
 
 function CartProduct({ product }) {
   const dispatch = useDispatch();
-  const [quantity, setQuantity] = useState(1);
+  // const [quantity, setQuantity] = useState(1);
+
+  const quantity = useSelector(
+    (state) =>
+      state.cart.cartProductList.find((item) => item.id === product.id).quantity
+  );
 
   function handleRemoveFromCart() {
     dispatch(removeFromCart(product.id));
   }
 
   function handleIncreaseQuantity() {
-    setQuantity(quantity + 1);
     dispatch(increaseQuantity(product.id));
   }
 
   function handleDecreaseQuantity() {
     if (quantity === 1) return;
-    setQuantity(quantity - 1);
     dispatch(decreaseQuantity(product.id));
   }
 
