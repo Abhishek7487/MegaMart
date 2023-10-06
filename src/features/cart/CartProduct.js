@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   decreaseQuantity,
@@ -8,7 +8,6 @@ import {
 
 function CartProduct({ product }) {
   const dispatch = useDispatch();
-  // const [quantity, setQuantity] = useState(1);
 
   const quantity = useSelector(
     (state) =>

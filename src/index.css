@@ -505,6 +505,10 @@ li {
   }
 }
 
+.orderOverview {
+  margin: 8rem 18rem;
+}
+
 @media screen and (max-width: 1120px) {
   html {
     font-size: 88.5%;
@@ -516,6 +520,10 @@ li {
   .cart {
     margin-left: 14rem;
     margin-right: 14rem;
+  }
+
+  .orderOverview {
+    margin: 8rem 14rem;
   }
 }
 
@@ -550,6 +558,10 @@ li {
   .cart {
     margin-left: 8rem;
     margin-right: 8rem;
+  }
+
+  .orderOverview {
+    margin: 6rem;
   }
 }
 
@@ -632,5 +644,21 @@ li {
 
   .cartProductList {
     padding-bottom: 6rem;
+  }
+
+  .orderOverview {
+    margin: 6rem 2rem;
+    /* position: relative; */
+  }
+
+  .orderOverview .ProductsTotal {
+    justify-content: space-between;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 0 2rem;
+    background-color: #2a9d8f;
+    color: #fff;
   }
 }

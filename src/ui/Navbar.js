@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
   const cartProductList = useSelector((state) => state.cart.cartProductList);
@@ -8,7 +8,7 @@ export default function Navbar() {
       <Link to="/productsList">
         <img src="../../logo.svg" className="logo" alt="logo" />
       </Link>
-      <p>TrendWardrobe</p>
+      <p>MegaMart</p>
       <div>
         {cartProductList.length > 0 && (
           <div className="cartStats">
