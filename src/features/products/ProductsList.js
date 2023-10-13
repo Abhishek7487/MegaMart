@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "./productsSlice";
 import Product from "./Product";
+import ProductCategoryFilter from "./ProductCategoryFilter";
 
 function ProductList() {
   const dispatch = useDispatch();
@@ -13,11 +14,16 @@ function ProductList() {
   }, [dispatch]);
 
   return (
-    <div className="productList">
-      {productList.map((product) => (
-        <Product key={product.id} product={product} />
-      ))}
-    </div>
+    <>
+      <div className="productList">
+        <ProductCategoryFilter />
+        <div className="products">
+          {productList.map((product) => (
+            <Product key={product.id} product={product} />
+          ))}
+        </div>
+      </div>
+    </>
   );
 }
 
