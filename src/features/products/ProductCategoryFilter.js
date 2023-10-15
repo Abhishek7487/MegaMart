@@ -16,17 +16,19 @@ function ProductCategoryFilter() {
   const productCategories = useSelector((state) => state.products.categories);
 
   return (
-    <div className="productCategoryFilter">
-      <h4>Filter by category </h4>
-      {productCategories.map((productCategory) => (
-        <p
-          key={productCategory}
-          onClick={() => handleFetchProducts(productCategory)}
-        >
-          {productCategory}
-        </p>
-      ))}
-    </div>
+    <>
+      <div className="productCategoryFilter">
+        <h4>Filter by category </h4>
+        {productCategories.map((productCategory) => (
+          <p
+            key={productCategory}
+            onClick={() => handleFetchProducts(productCategory)}
+          >
+            {productCategory}
+          </p>
+        ))}
+      </div>
+    </>
   );
 }
 
