@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   productList: [],
+  categories: [],
   activeProduct: null,
   status: "idle",
   error: null,
@@ -20,6 +21,15 @@ export const fetchProducts = createAsyncThunk(
   }
 );
 
+export const fetchCategories = createAsyncThunk(
+  "products/fetchCategories",
+  async () => {
+    const res = await fetch("https://dummyjson.com/products/categories");
+    const data = await res.json();
+    return data;
+  }
+);
+
 const ProductsSlice = createSlice({
   name: "products",
   initialState,
@@ -34,6 +44,17 @@ const ProductsSlice = createSlice({
         state.status = "idle";
       })
       .addCase(fetchProducts.rejected, (state, action) => {
+        state.status = "error";
+        state.error = action.error.message;
+      })
+      .addCase(fetchCategories.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(fetchCategories.fulfilled, (state, action) => {
+        state.status = "idle";
+        state.categories = action.payload;
+      })
+      .addCase(fetchCategories.rejected, (state, action) => {
         state.status = "error";
         state.error = action.error.message;
       });

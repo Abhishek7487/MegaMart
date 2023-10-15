@@ -1,5 +1,6 @@
-import { useDispatch } from "react-redux";
-import { fetchProducts } from "./productsSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCategories, fetchProducts } from "./productsSlice";
+import { useEffect } from "react";
 
 function ProductCategoryFilter() {
   const dispatch = useDispatch();
@@ -8,28 +9,11 @@ function ProductCategoryFilter() {
     dispatch(fetchProducts(category));
   }
 
-  const productCategories = [
-    "smartphones",
-    "laptops",
-    "fragrances",
-    "skincare",
-    "groceries",
-    "home-decoration",
-    "furniture",
-    "tops",
-    "womens-dresses",
-    "womens-shoes",
-    "mens-shirts",
-    "mens-shoes",
-    "mens-watches",
-    "womens-watches",
-    "womens-bags",
-    "womens-jewellery",
-    "sunglasses",
-    "automotive",
-    "motorcycle",
-    "lighting",
-  ];
+  useEffect(() => {
+    dispatch(fetchCategories());
+  }, [dispatch]);
+
+  const productCategories = useSelector((state) => state.products.categories);
 
   return (
     <div className="productCategoryFilter">

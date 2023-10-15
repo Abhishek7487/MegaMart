@@ -106,10 +106,11 @@ li {
 .productList {
   display: flex;
   padding: 8rem 6rem;
+  overflow: auto;
 }
 
 .productList .productCategoryFilter {
-  width: 20%;
+  position: fixed;
 }
 
 .productList .productCategoryFilter h4 {
@@ -122,13 +123,14 @@ li {
 }
 
 .productList .products {
-  width: 80%;
+  margin-left: auto;
+  width: 70%;
   padding: 0 4rem;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2.4rem;
   justify-items: center;
-  overflow: hidden;
+  overflow: auto;
 }
 
 .productList .products::-webkit-scrollbar {
